@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox 
 
 import mysql.connector as connector
-
+import Selecttask
 
 class EditAdmin:
     
@@ -12,7 +12,10 @@ class EditAdmin:
     def __init__(self):
         
         
-        
+        def onmainpage():
+            
+            root.destroy()
+            Selecttask.SelecttheTask()
         def EditPassword():
             
             name = UsernameEntry.get()
@@ -72,6 +75,7 @@ class EditAdmin:
         root.geometry("430x290+600+250")
         root.resizable(0,0)
         root.configure(background = "#d9d9d9")
+        root.protocol("WM_DELETE_WINDOW", onmainpage)
         
                        
         _ = tk.Label(root, text = " ",bg = "#d9d9d9").grid(row =0 , column = 0, padx = 2, columnspan = 1)

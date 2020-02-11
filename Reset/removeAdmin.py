@@ -2,16 +2,22 @@ import tkinter as tk
 from tkinter import messagebox
 
 import mysql.connector as connector
-
+import Selecttask
 class RemoveAdmin:
     
     def __init__(self):
+        
+        def onmainpage():
+            
+            root.destroy()
+            Selecttask.SelecttheTask()
         root = tk.Tk()
         root.title("Admin Entry Page")
         root.geometry("375x290+600+250")
         root.resizable(0,0)
         root.configure(background = "#d9d9d9")
-           
+        root.protocol("WM_DELETE_WINDOW", onmainpage)
+        
         def Remove():
             name = UsernameEntry.get().strip()
             password = PasswordEntry.get()

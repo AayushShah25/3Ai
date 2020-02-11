@@ -3,6 +3,7 @@ from tkinter import messagebox
 import adminadd
 import EditAdmin 
 import removeAdmin
+import Admin
 
 class SelecttheTask:
     
@@ -24,7 +25,11 @@ class SelecttheTask:
                 
                 
                 
-                
+        def opengood():
+            
+            temp.destroy()
+            Admin.Admin()
+            
         temp = tk.Tk()
         temp.withdraw()
         root = tk.Toplevel(temp)
@@ -32,7 +37,7 @@ class SelecttheTask:
         root.configure(background = "#d9d9d9")
         root.title("Select the Task")
         root.resizable(0,0)      
-        root.protocol("WM_DELETE_WINDOW", temp.destroy)
+        root.protocol("WM_DELETE_WINDOW", opengood)
                        
                        
 #Elements Area

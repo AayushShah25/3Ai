@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import Selecttask
-
+import Admin
 class InputKey:
     
     
@@ -33,12 +33,16 @@ class InputKey:
             
             
             
-       
+        def opengood():
+            root.destroy()
+            Admin.Admin()
+            
         root = tk.Tk()
         root.title("Admin Reset Page")
         root.geometry("450x200+600+340")
         root.configure(background = "#d9d9d9")
-        root.resizable(0,0)               
+        root.resizable(0,0)  
+        root.protocol("WM_DELETE_WINDOW", opengood)
         
         
         TLabel = tk.Label(root, text = "", bg = "#d9d9d9").grid(row = 0 , column = 0, padx = 50)               
@@ -67,5 +71,5 @@ class InputKey:
         root.mainloop()
         
         
-InputKey()
+
         

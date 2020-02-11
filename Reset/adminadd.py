@@ -2,14 +2,18 @@ import tkinter as tk
 from tkinter import messagebox
 
 import mysql.connector as connector
-
+import Selecttask
 class AdminADD:
     
     
     IsEnabled = False
     def __init__(self):
         
-        
+        def onmainpage():
+            
+            root.destroy()
+            Selecttask.SelecttheTask()
+            
         def Add():
             
             if NameEntry.get().strip() == '' or PEntry.get() == '' or RePasswordEntry.get() == '':
@@ -89,7 +93,7 @@ class AdminADD:
         root.geometry("375x370+600+250")
         root.resizable(0,0)
         root.configure(background = "#d9d9d9")
-                       
+        root.protocol("WM_DELETE_WINDOW", onmainpage)
                        
         #Element Section
         
