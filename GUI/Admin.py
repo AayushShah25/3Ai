@@ -2,14 +2,21 @@ import tkinter as tk
 import mysql.connector as connector
 from tkinter import messagebox
 import MainPage
-
+import KeyInputPage
 
 
 class Admin:
     def __init__(self):
         
+        
+        
         mydb= connector.connect(host = "localhost", user= "root", passwd = "aayush123", database="testdb")
         cursor = mydb.cursor()
+        
+        def ChangeSettings():
+            top.destroy()
+            KeyInputPage.InputKey()
+            
         
         def check(u,p):
             print(u,p)
@@ -27,7 +34,7 @@ class Admin:
                 messagebox.showinfo("Authentication Success", "You are now logged in ID : {}".format(Admin_id))
                 
                 top.destroy()
-                root.destroy()
+#                root.destroy()
                 MainPage.MAINCALL(Admin_id)
                 
                 
@@ -48,12 +55,12 @@ class Admin:
         
         
         
-        root = tk.Tk()
-        root.withdraw()
+#        root = tk.Tk()
+#        root.withdraw()
 
         
-        top = tk.Toplevel(root)
-        top.protocol("WM_DELETE_WINDOW", root.destroy)
+        top = tk.Tk()
+#        top.protocol("WM_DELETE_WINDOW", root.destroy)
         
         top.geometry("433x300+638+321")
         
@@ -82,7 +89,7 @@ class Admin:
         self.Label1_1.configure(text='''Login''')
 
         self.Label2 = tk.Label(top)
-        self.Label2.place(relx=0.069, rely=0.377, height=21, width=89)
+        self.Label2.place(relx=0.069, rely=0.377, height=22, width=89)
         self.Label2.configure(background="#d9d9d9")
         self.Label2.configure(disabledforeground="#a3a3a3")
         self.Label2.configure(font="-family {Product Sans} -size 13 -weight normal ")
@@ -90,7 +97,7 @@ class Admin:
         self.Label2.configure(text='''Username''')
 
         self.Label2_5 = tk.Label(top)
-        self.Label2_5.place(relx=0.069, rely=0.57, height=21, width=89)
+        self.Label2_5.place(relx=0.069, rely=0.57, height=22, width=89)
         self.Label2_5.configure(activebackground="#f9f9f9")
         self.Label2_5.configure(activeforeground="black")
         self.Label2_5.configure(background="#d9d9d9")
@@ -109,7 +116,7 @@ class Admin:
         self.Entry1.configure(foreground="#000000")
         self.Entry1.configure(insertbackground="black")
 
-        self.Entry1_11 = tk.Entry(top)
+        self.Entry1_11 = tk.Entry(top, show = "*")
         self.Entry1_11.place(relx=0.326, rely=0.557,height=30, relwidth=0.356)
         self.Entry1_11.configure(background="white")
         self.Entry1_11.configure(disabledforeground="#a3a3a3")
@@ -133,6 +140,12 @@ class Admin:
         self.Button1.configure(highlightcolor="black")
         self.Button1.configure(pady="0")
         self.Button1.configure(text='''Access''')
+        
+        self.Image1 = tk.PhotoImage(file = r"../DATA/setadmin.png")
+        self.Image1 = self.Image1.subsample(10)
+        self.SetAdminButton = tk.Button(top, image = self.Image1, command = ChangeSettings )
+        self.SetAdminButton.place(relx = 0.02, rely = 0.9)
+        
 
         
         top.mainloop()
