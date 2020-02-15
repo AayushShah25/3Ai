@@ -21,7 +21,7 @@ class Admin:
         def check(u,p):
             print(u,p)
             
-            q = "select Id from admin where username = '{}' and BINARY password like '{}'".format(u,p)
+            q = "select Id from admin where username = '{}' and BINARY password like '{}' and isin = true".format(u,p)
             print(q)
             
             cursor.execute(q)
