@@ -1,8 +1,10 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import *
+
 import mysql.connector as connector
 import HList
+import MainPage
 
 
 
@@ -39,15 +41,18 @@ class Hold:
         
 #        root = tk.Tk()
  #       root.withdraw()
-        
-        top = tk.Toplevel()
+        def onmainpage():
+            
+            top.destroy()
+            MainPage.MAINCALL(Admin_id)
+        top = tk.Tk()
 
         top.geometry("669x443")
         
         top.resizable(0, 0)
         top.title("Remove Finder")
         top.configure(background="#d9d9d9")
-
+        top.protocol("WM_DELETE_WINDOW", onmainpage)           
         
         
 

@@ -33,14 +33,14 @@ class MAINCALL():
         incrementedID = int(result[0][0]) + 1
 
         
-        root = tk.Tk()
-        root.withdraw()
+        #root = tk.Tk()
+        #root.withdraw()
         
         
-        window = tk.Toplevel(root)
-        window.protocol("WM_DELETE_WINDOW", root.destroy)
+        window = tk.Tk()
+#        window.protocol("WM_DELETE_WINDOW", root.destroy)
 
-
+        window.lift()
         window.geometry("700x700")
         window.maxsize(1920, 1080)
         window.resizable(0, 0)
@@ -51,12 +51,12 @@ class MAINCALL():
         
         def GenerateReport():
             window.destroy()
-            root.destroy()
+#            root.destroy()
             generateReport.Generate(Admin_id)
             
         def checkAttendance():
             window.destroy()
-            root.destroy()
+#            root.destroy()
             attendancechecker.GetDateforAttendance(Admin_id)
         def ExtractFeatures(img):
             
@@ -70,19 +70,19 @@ class MAINCALL():
         
         def Improve():
             window.destroy()
-            root.destroy()
+#            root.destroy()
             FindImprove.FindForImprove(Admin_id)
             
         def ADD():
             
             window.destroy()
-            root.destroy()
+#            root.destroy()
             Names.EnterData(incrementedID,Admin_id)
 
         def Removefn():
             
             window.destroy()
-            root.destroy()
+#            root.destroy()
             Remove.RemoveField(Admin_id)
 
         def showUnkowns():
@@ -101,12 +101,12 @@ class MAINCALL():
         def hold():
             window.destroy()
             
-            root.destroy()
+#            root.destroy()
             Hold.Hold(Admin_id)
 
         def release():
             window.destroy()
-            root.destroy()
+#            root.destroy()
             ReList.ListKAKA(Admin_id)
             
         def Train():
@@ -138,14 +138,15 @@ class MAINCALL():
                             
                             messagebox.showerror("Make Some Changes !!","The number of Faces for ID: "+str(personID)+" Must be in between 3 and 6 (Inclusive)")
                             break
-                        
+                     
+                    if fix : webbrowser.open(r'C:\Users\GIGABYTE\Desktop\Project\Faces\\'+str(personID))
                         
                     if fix == False:        
                         print("Feeding In..." )
                         
                         t = threading.Thread(target = Load)
                         t.start()
-                        Load()
+                        
                         
                         for personID in directories:        
                             

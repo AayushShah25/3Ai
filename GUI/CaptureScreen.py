@@ -20,21 +20,31 @@ class Capture:
                 print('Getting Face')
                 Add_Face_For_Improve.AddFace(Details,StartFrom)
                 print('First ENTERD')
+                temp = tk.Tk()
+                temp.withdraw()
+                
                 messagebox.showinfo("TRAIN FOR GOOD RESULTS", "The New faces are added, plese go ahead and Re-Train the model to improve accuracy.")
+                temp.destroy()
                 MainPage.MAINCALL(Admin_id)
                 
 
 
 
 
-
-        top = tk.Toplevel()
+        def onmainpage():
+            top.destroy()
+            MainPage.MAINCALL(Admin_id)
+            
+            
+        top = tk.Tk()
         top.geometry("600x500")
        
         
         top.resizable(0, 0)
+        
         top.title("Take Photos")
         top.configure(background="#d9d9d9")
+        top.protocol("WM_DELETE_WINDOW", onmainpage)              
 
         self.Label1 = tk.Label(top)
         self.Label1.place(relx=0.183, rely=0.079, height=81, width=394)

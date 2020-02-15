@@ -3,6 +3,7 @@ from tkinter import ttk
 from tkinter import *
 import mysql.connector as connector
 import RList
+import MainPage
 
 
 
@@ -36,18 +37,23 @@ class RemoveField:
 
                 top.destroy()
 #                root.destroy()
+                print(result)
                 RList.ListKAKA(result,Admin_Id)
 
 #        root = tk.Tk()
 #        root.withdraw()
-        
-        top = tk.Toplevel()
+        def onmainpage():
+            
+            top.destroy()
+            MainPage.MAINCALL(Admin_Id)
+        top = tk.Tk()
 
         top.geometry("669x443")
         
         top.resizable(0, 0)
         top.title("Remove Finder")
         top.configure(background="#d9d9d9")
+        top.protocol("WM_DELETE_WINDOW", onmainpage)        
 
         
         

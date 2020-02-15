@@ -3,6 +3,7 @@ from tkinter import ttk
 from tkinter import *
 import mysql.connector as connector
 import FList
+import MainPage
 
 
 
@@ -34,14 +35,19 @@ class FindForImprove:
             	top.destroy()
             	FList.ListKAKA(result,Admin_id)
 
-
-        top = tk.Toplevel()
+        def onmainpage():
+            
+            top.destroy()
+            MainPage.MAINCALL(Admin_id)
+        top = tk.Tk()
 
         top.geometry("669x443")
         
         top.resizable(0, 0)
+        
         top.title("Improve Face Finder")
         top.configure(background="#d9d9d9")
+        top.protocol("WM_DELETE_WINDOW", onmainpage)
 
         
         
