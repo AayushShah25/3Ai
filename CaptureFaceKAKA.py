@@ -6,17 +6,24 @@ from datetime import datetime
 class GetImageForReference:
     
     detector = cv2.CascadeClassifier(r'./DATA/face.xml')
-    now = datetime.now()
-    date = now.strftime("%d-%m-%y")
-    time = now.strftime("%H%M%S")
+    
+    
     
     try:
+        now = datetime.now()
+        date = now.strftime("%d-%m-%y")
         os.mkdir('./Requests/'+str(date))
     except Exception:
         pass
     
-    def __init__(self):
+    def CaptureKAKA(self):
+
         
+        
+        now = datetime.now()
+        date = now.strftime("%d-%m-%y")
+        time = now.strftime("%H%M%S")
+            
         temp = cv2.VideoCapture(0)
         timetoclosewindow = 0
         
@@ -25,7 +32,7 @@ class GetImageForReference:
             _, frame = temp.read()
             tosave = frame.copy()
             cv2.circle(frame, (320,160),150, (255,0,225), 2)
-#            cv2.circle(frame, (200,70),50, (255,0,225), -1)
+            frame = cv2.flip(frame,1)
             ableToCapture = False
             
             
@@ -48,7 +55,8 @@ class GetImageForReference:
             else:
                cv2.putText(frame,"Keep your face inside the Circle",(80,400),  cv2.FONT_HERSHEY_SIMPLEX, 1, (255,0,255) , 2) 
             
-            
+            cv2.namedWindow("Press A to Capture picture")
+            cv2.moveWindow("Press A to Capture picture",120,300)
             cv2.imshow("Press A to Capture picture", frame)
             
             
@@ -56,9 +64,9 @@ class GetImageForReference:
                 
                 if ableToCapture:
                     
-                    cv2.imwrite("./Requests/"+str(self.date)+"/"+str(self.time)+".png", tosave[y:y+h, x:x+w])
+                    cv2.imwrite("./Requests/"+str(date)+"/"+str(time)+".png", tosave[y:y+h, x:x+w])
                     break
-            
+            print(timetoclosewindow)
             if timetoclosewindow == 200:
                 break
         
@@ -67,10 +75,16 @@ class GetImageForReference:
             
         cv2.destroyAllWindows()
         temp.release()
-        return None
         
-        
-        
+        if timetoclosewindow >= 200:
+            return 0
+        if timetoclosewindow < 200:
+            print("In Less 200 : ",timetoclosewindow)
+            print("The Time passed : ",time)
+            
+            return time
 
-
+       
+         
+        
         
